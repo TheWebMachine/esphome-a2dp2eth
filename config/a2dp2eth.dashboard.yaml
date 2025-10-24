@@ -26,6 +26,18 @@ packages:
 logger:
   level: ${log_level}
 
+## You need to add your proper Ethernet config based on the board you are using. You can see a list of known boards here:
+##    https://esphome.io/components/ethernet/
+## The information below is for the Olimex ESP32-GATEWAY and LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A:
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk:
+    pin: GPIO17
+    mode: CLK_OUT
+  phy_addr: 0
+
 ## OPTIONALLY, enable transport encryption for the API layer by uncommenting the following lines 
 ## and replacing "REPLACE_BY_32_BIT_RANDOM_KEY" with a 32-character random key.
 ## For more information, refer to the ESPHome documentation:
