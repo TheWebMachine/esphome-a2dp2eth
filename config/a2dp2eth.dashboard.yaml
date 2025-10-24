@@ -1,0 +1,38 @@
+substitutions:
+  name: bt-music
+  friendly_name: BT-Music
+  # You must set the correct IP and port for the receiving TCP stream server, for example a 
+  # Snapcast server setup for a TCP Server stream. If you have multiple devices and wish to
+  # be able to stream from multiple devices simultaneously, each will need setup with their
+  # own unique port number and server instance on the receiving end (5001, 5002, 5003, etc).
+  tcp_server_ip: 192.168.1.10
+  tcp_server_port: 5001
+  # OPTIONALLY, set the log level to debug, info, warn, error
+  log_level: info
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: true
+  friendly_name: ${friendly_name}
+
+packages:
+  TheWebMachine.ESPHome-A2DP2Eth: 
+    url: https://github.com/TheWebMachine/esphome-a2dp2eth
+    refresh: 1s  
+    files: 
+    # Main config files, don't remove
+    - config/a2dp2eth.base.yaml
+          
+logger:
+  level: ${log_level}
+
+## OPTIONALLY, enable transport encryption for the API layer by uncommenting the following lines 
+## and replacing "REPLACE_BY_32_BIT_RANDOM_KEY" with a 32-character random key.
+## For more information, refer to the ESPHome documentation:
+## https://esphome.io/components/api.html
+## Note: The documentation also provides a tool to generate a random key
+
+#api:
+#  encryption:
+#    key: REPLACE_BY_32_BIT_RANDOM_KEY
+
